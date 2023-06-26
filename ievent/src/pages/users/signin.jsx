@@ -13,7 +13,7 @@ export default function signin() {
         e.preventDefault();
 
         // const response = await fetch(
-        //     `${process.env.VERIFY_PUBLIC_API}/user/signin`,
+        //     `${process.env.PUBLIC_API}/user/signin`,
         //     {
         //         method : 'POST',
         //         headers: {
