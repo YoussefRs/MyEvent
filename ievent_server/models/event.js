@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema(
     {
-        event_i: {
+        event_id: {
             type: String,
-            required: true,
+            requird: true,
         },
         name: {
             type: String,
@@ -26,20 +26,20 @@ const eventSchema = new mongoose.Schema(
         },
         cover: {
             type: String,
-            default: 
+            default:
                 "https://eventplanning24x7.files.wordpress.com/2018/04/events.png",
         },
         profile: {
             type: String,
-            default: 
-                 "https://i.etsystatic.com/15907303/r/il/c8acad/1940223106/il_794xN.1940223106_9tfg.jpg",
+            default:
+                "https://i.etsystatic.com/15907303/r/il/c8acad/1940223106/il_794xN.1940223106_9tfg.jpg",
         },
         organizer: {
             type: String,
         },
         participants: [],
     },
-    { timestamps : true}
+    { timestamps: true }
 );
 
 const Event = mongoose.model("Event", eventSchema);

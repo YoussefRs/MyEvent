@@ -12,18 +12,18 @@ export default function signin() {
     const handleVerifyEmail = async (e) => {
         e.preventDefault();
 
-        // const response = await fetch(
-        //     `${process.env.PUBLIC_API}/user/signin`,
-        //     {
-        //         method : 'POST',
-        //         headers: {
-        //             "Content-Type" : "application/json",
-        //         },
-        //         body : JSON.stringify({
-        //             email: email,
-        //         })
-        //     }
-        // );
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/user/signin`,
+            {
+                method : 'POST',
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body : JSON.stringify({
+                    email: email,
+                })
+            }
+        );
 
         const data = await response.json();
         if (response.status === 200) {
@@ -51,7 +51,7 @@ export default function signin() {
     const handleSubmit  = async (e) => {
         e.preventDefault();
         const response = await fetch(
-            `${process.env.PUBLIC_API}/users/verify`,
+            `${process.env.NEXT_PUBLIC_API_URL}/user/signin/verify`,
             {
                 method : "POST",
                 headers : {
@@ -154,7 +154,7 @@ export default function signin() {
 
         {/* Success Message Handle */}
         {message.successMsg && (
-            <h1 className='rounded p-3 my-2 bg-red-200 text-red-600 font-medium'>
+            <h1 className='rounded p-3 my-2 bg-green-500 text-white font-medium'>
                 {message.successMsg}
             </h1>
         )}
