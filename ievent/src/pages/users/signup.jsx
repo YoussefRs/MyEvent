@@ -133,6 +133,7 @@ export default function singup({ userIdCookie }) {
             onClick={() => router.push('/')}
             size={24}
             className='cursor-pointer'
+            color='white'
         />
         {/*page heading */}
         <div className="text-center text-3xl font-bold">Signup Page</div>

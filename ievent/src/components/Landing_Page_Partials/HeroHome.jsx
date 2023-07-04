@@ -14,8 +14,8 @@ function HeroHome() {
                 {/* Section Header */}
                 <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
                     <h1 className="h1 m-2 text-[color:var(--primary-color)]">
-                        {"< i"}
-                        <span className='text-[color:var(--darker-secondary-color)]'>EVENT</span>
+                        {"<"}
+                        <span className='text-[color:var(--darker-secondary-color)]'>THRUST</span>
                         {" />"}
                         <p className="mt-3 text-5xl text-white">
                                 {"Event Management"}

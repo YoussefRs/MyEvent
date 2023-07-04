@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const userRouter = require("./routes/authRoutes")
+const dashboardRouter = require("./routes/userDashboardRoutes");
 
 
 dotenv.config();
@@ -28,7 +29,8 @@ mongoose
 
 require('./models/otpAuth');
 require('./models/user');
-
+require("./models/admin");
+require("./models/event");
 
 app.use(bodyParser.urlencoded({ extended : false}))
 app.use(bodyParser.json());
@@ -36,6 +38,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use("/user", userRouter);
+app.use("/user", dashboardRouter);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Server is running on : ${process.env.PORT}`)
