@@ -1,13 +1,48 @@
-import React, { useState } from 'react'
-import { FiArrowLeft } from "react-icons/fi";
+import { setUserToken } from "@/utils/setUserToken";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { FiArrowLeft } from "react-icons/fi";
+import Cookies from "universal-cookie";
 
-export default function signin() {
+export async function getServerSideProps(context) {
+    const cookies = new Cookies(context.req.headers.cookie);
+    const userId = cookies.get("user_token");
+    if (!userId) {
+        return {
+            props: { userIdCookie: null },
+        };
+    }
+    return {
+        props: { userIdCookie: userId },
+    };
+}
+
+export default function signin({ userIdCookie }) {
     const router = useRouter();
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState({ errorMsg: "", successMsg: ""})
     const [otp, setOtp] = useState('')
+
+    useEffect(() => {
+        // If cookie found, Redirect to dashboard
+        if (userIdCookie) {
+            setStep(3); // Skip login steps
+
+            setTimeout(() => {
+                // Set success message
+                setMessage({
+                    errorMsg: "",
+                    successMsg: "Redirecting you ...",
+                });
+            }, 500);
+
+            // Redirect to dashboard
+            setTimeout(() => {
+                router.push("/users/dashboard");
+            }, 800);
+        }
+    }, []);
 
     const handleVerifyEmail = async (e) => {
         e.preventDefault();
@@ -67,7 +102,7 @@ export default function signin() {
         if (response.status === 200) {
             setMessage({ errorMsg : "", successMsg : data.msg});
             setStep(3); // Move to the next step on the same page
-            // setUserToken(data.user_id);
+            setUserToken(data.user_id);
         } else {
             console.error(`Failed with status code ${response.status}`);
             setMessage({ errorMsg: data.msg, successMsg: ""});

@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-export default function singup() {
+export default function singup({ userIdCookie }) {
     const [step, setStep] = useState(1)
     const [message, setMessage] = useState({ errorMsg: "", successMsg: "" })
 
@@ -30,25 +30,25 @@ export default function singup() {
 
 
 
-    // useEffect(() => {
-    //     // If cookie found, Redirect to dashboard
-    //     if (userIdCookie) {
-    //         setStep(3); // Skip login steps
+    useEffect(() => {
+        // If cookie found, Redirect to dashboard
+        if (userIdCookie) {
+            setStep(3); // Skip login steps
 
-    //         setTimeout(() => {
-    //             // Set success message
-    //             setMessage({
-    //                 errorMsg: "",
-    //                 successMsg: "Redirecting you ...",
-    //             });
-    //         }, 500);
+            setTimeout(() => {
+                // Set success message
+                setMessage({
+                    errorMsg: "",
+                    successMsg: "Redirecting you ...",
+                });
+            }, 500);
 
-    //         // Redirect to dashboard
-    //         setTimeout(() => {
-    //             router.push("/users/dashboard");
-    //         }, 800);
-    //     }
-    // }, []);
+            // Redirect to dashboard
+            setTimeout(() => {
+                router.push("/users/dashboard");
+            }, 800);
+        }
+    }, []);
 
     const handleVerifyEmail = async (event) => {
         event.preventDefault();
