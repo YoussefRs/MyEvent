@@ -24,18 +24,18 @@ function HeroHome() {
                     <p className="text-2xl text-gray-500 mb-8">
                         "Simplified Registration, Seamless Management, and Easy Ticketing."
                     </p>
-                    <a
+                    {/* <a
                         href='/users/signin'
                         className='btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0'
                     >
                         Signin
-                    </a>
-                    <a
+                    </a> */}
+                    {/* <a
                         href='/users/signup'
                         className='btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4'
                     >
                         Signup
-                    </a>
+                    </a> */}
                     
                 </div>
             </div>

@@ -2,6 +2,7 @@ import FeaturesZigZag from "./Landing_Page_Partials/FeaturesZigZag"
 import Header from "./Landing_Page_Partials/Header"
 import HeroHome from "./Landing_Page_Partials/HeroHome"
 import images from '@/utils/landing_page_utils'
+import SlideShow from "./Landing_Page_Partials/SlideShow"
 
 
 function LandingPage() {
@@ -11,7 +12,8 @@ function LandingPage() {
         <Header className="overflow-x-hidden" />
 
         <main className="grow">
-            <HeroHome />
+            {/* <HeroHome /> */}
+            <SlideShow />
             <FeaturesZigZag images={images} />
         </main>
       </div>

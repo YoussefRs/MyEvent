@@ -14,6 +14,19 @@ function Header() {
                     {/*Desktop sign in links*/}
                     <ul className="flex grow justify-end flex-wrap items-center">
                         <li>
+                            <a
+                                href='/users/signup'
+                                className='btn-sm text-white bg-gray-700 hover:bg-gray-800 ml-3 cursor-pointer'
+                            >
+                                Signup
+                            </a>
+                            <a
+                                href='/users/signin'
+                                className='btn-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] ml-3 cursor-pointer'
+                            >
+                                Signin
+                            </a>
+                            
                             <a onClick={ () => router.push("/admin/auth")} className="btn-sm text-red bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] ml-3 cursor-pointer">
                                 Event Manager 
                             </a>
