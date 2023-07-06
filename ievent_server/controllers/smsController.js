@@ -17,8 +17,8 @@ function sendSMS(Email, otp) {
     let mailOptions = {
         from: process.env.NODE_MAILER_USER,
         to: Email,
-        subject: "One Time Password - iEVENT",
-        html: `Please keep your OTP confidential and do not share it with anyone. The OTP will be valid for five minutes only. <br><strong>OTP: ${otp}</strong><br><br>Thank you for choosing iEVENT!<br><br>If you have any questions, please contact us at:<br>Anurag Singh: test@test.com`
+        subject: "One Time Password - THRUST",
+        html: `Please keep your OTP confidential and do not share it with anyone. The OTP will be valid for five minutes only. <br><strong>OTP: ${otp}</strong><br><br>Thank you for choosing THRUST!<br><br>If you have any questions, please contact us at:<br> test@test.com`
     };
 
     transporter.sendMail(mailOptions, function (err, sucess) {

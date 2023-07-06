@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }) {
         <>
             <Head>
                 <link rel="shortcut icon" href="/favicon_io/favicon.ico" />
-                <title>iEvent</title>
+                <title>THRUST</title>
             </Head>
             <Component {...pageProps} />
         </>

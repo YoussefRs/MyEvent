@@ -3,10 +3,10 @@ import { useRouter } from "next/router"
 
 function Header() {
 
-    const router = useRouter
+    const router = useRouter();
 
   return (
-    <div className="absolute w-full z-30">
+    <div className="fixed w-full z-30 flex items-center backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="flex items-center justify-between h-20">
                 {/*Desktop view */}

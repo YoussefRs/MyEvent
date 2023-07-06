@@ -2,7 +2,39 @@ import React from 'react'
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-function Dashboard_Filter() {
+function Dashboard_Filter({
+    filterOptions = {
+        keyword: "",
+        category: "",
+        dateRange: "",
+        price: [10, 300],
+    },
+    setFilterOptions,
+    handleFilterClear,
+}) {
+    // function to handle filter values
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case "keyword":
+                setFilterOptions({ ...filterOptions, keyword: value });
+                break;
+            case "category":
+                setFilterOptions({ ...filterOptions, category: value });
+                break;
+            case "dateRange":
+                setFilterOptions({ ...filterOptions, dateRange: value });
+                break;
+            default:
+                break;
+        }
+    };
+
+    // function to handle price change in filters
+    const handlePriceChange = (value) => {
+        setFilterOptions({ ...filterOptions, price: [...value] });
+    };
+
   return (
     // add filter options to the DOM element
     <div>
@@ -17,7 +49,8 @@ function Dashboard_Filter() {
                 type="text"
                 id="keyword"
                 name="keyword"
-                // value={}
+                value={filterOptions.keyword}
+                onChange={handleInputChange}
                 className='filterInput'
                 placeholder='Search by keyword...'
             />
@@ -33,9 +66,10 @@ function Dashboard_Filter() {
             <select
                 id='category'
                 name='category'
-                // value={}
-                onChange={()=>{}} //handleInputChange
+                value={filterOptions.category}
+                onChange={handleInputChange} //handleInputChange
                 className='filterInput'
+                
             >
                 <option value="">Select a category...</option>
                 <option value="category1">Techno</option>
@@ -55,8 +89,8 @@ function Dashboard_Filter() {
                 type='date'
                 id='dateRange'
                 name='dateRange'
-                // value={}
-                onChange={() => {}}
+                value={filterOptions.dateRange}
+                onChange={handleInputChange}
                 className='filterInput'
             />
         </div>
@@ -68,14 +102,14 @@ function Dashboard_Filter() {
                 max={300}
                 step={10}
                 defaultValue={[10,100]}
-                // value={}
-                onChange={() => {}}
+                value={filterOptions.price}
+                onChange={handlePriceChange}
             />
-            <p className='text-white'>DT - DT</p>
+            <p className='text-white'>DT {filterOptions.price[0]} - DT {filterOptions.price[1]}</p>
         </div>
       </form>
       <button
-        onClick={() => {}}
+        onClick={handleFilterClear}
         className='w-full mt-2 text-white py-2 px-4 rounded-lg bg-gray-700 hover:bg-gray-800'
       >
         Clear Filters

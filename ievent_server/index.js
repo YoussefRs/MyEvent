@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 
 const userRouter = require("./routes/authRoutes")
 const dashboardRouter = require("./routes/userDashboardRoutes");
+const adminRouter = require("./routes/adminRoutes");
+const eventRouter = require("./routes/eventRoutes");
 
 
 dotenv.config();
@@ -39,6 +41,9 @@ app.use(cors());
 
 app.use("/user", userRouter);
 app.use("/user", dashboardRouter);
+
+app.use("/", adminRouter);
+app.use("/", eventRouter);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Server is running on : ${process.env.PORT}`)
