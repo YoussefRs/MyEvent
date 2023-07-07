@@ -2,22 +2,23 @@ import React, { Fragment, useState } from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import { FaArrowRight } from 'react-icons/fa';
+import { FiArrowRight } from 'react-icons/fi';
 
-function MulSlideShow() {
+function SlideShop() {
     const images = [
-        "img/SliderPics/edm1.jpg",
-        "img/SliderPics/edm2.jpg",
-        "img/SliderPics/edm3.jpg",
-        "img/SliderPics/edm4.jpg",
-        "img/SliderPics/edm5.jpg",
-    ];
+      "img/ShopPics/j1.jpg",
+      "img/ShopPics/j2.png",
+      "img/ShopPics/j3.jpg",
+      "img/ShopPics/j4.jpg",
+      "img/ShopPics/j5.png",
+  ];
 
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 3,
         responsive: [
             {
@@ -53,26 +54,23 @@ function MulSlideShow() {
             <br/>
             {/*Title section */}
             <div className="max-w-100 text-white md:pb-16 ">
-                 <div className='flex justify-between flex-row md:flex-ro'>
-                    <a className="h2 mb-4 md:mb-0" href='#'>
-                        UPCOMING
-                    </a>
-                    <a className="flex flex-row text-lg pt-2 mb-4 md:mb-0 md:mr-12 hover:text-[color:var(--darker-secondary-color)]" href='#'>
-                         VIEW ALL
-                         <FiArrowRight className='pt-2'/> 
-                    </a>
+                <div className='flex justify-between flex-row md:flex-row'>
+                  <a className="h2 mb-4 md:mb-0" href='#'>
+                      SHOP
+                  </a>
+                  <a className="flex flex-row text-lg pt-2 mb-4 md:mb-0 md:mr-12 hover:text-[color:var(--darker-secondary-color)]" href='#'>
+                       VIEW ALL
+                      <FiArrowRight className='pt-2'/> 
+                  </a>
                 </div>
                 <Fragment>
                     <Slider {...settings} >
                         {images.map((each, i) =>(
-                            <div key={i} className='flex w-screen relative h-90'>
-                                <img className='object-cover w-inherit h-80 cursor-pointer pr-1 pl-1' src={each}/>
-                                <div className='flex justify-between ml-5 mr-5'>
-                                  <div className='flex flex-col'>
+                            <div key={i} className='flex w-full relative h-90'>
+                                <img className='object-cover w-80 h-80 cursor-pointer pr-1 pl-1' src={each}/>
+                                <div className='flex flex-col ml-5 mr-5'>
                                     <p className='text-white'>Name</p>
-                                    <p className='text-white'>Place</p>
-                                  </div>
-                                  <p className='text-[color:var(--darker-secondary-color)]'>Date</p>
+                                    <p className='text-[color:var(--darker-secondary-color)]'>Price</p>
                                 </div>
                             </div>
                         ))}
@@ -84,4 +82,4 @@ function MulSlideShow() {
   )
 }
 
-export default MulSlideShow
+export default SlideShop;

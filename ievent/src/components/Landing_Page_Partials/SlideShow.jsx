@@ -47,7 +47,7 @@ function SlideShow() {
       <Zoom {...zoomProp}>
         {images.map((each, i) =>(
             <div key={i} className='flex justify-center md:items-center items-start w-screen relative'>
-                <img className='object-cover w-full h-screen cursor-pointer' src={each}/>
+                <img className='object-cover w-full h-screen cursor-pointer ' src={each}/>
             </div>
         ))}
       </Zoom>
