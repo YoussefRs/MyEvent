@@ -28,6 +28,8 @@ function SlideShow() {
         duration: 5000,
         transitionDuration: 300,
         infinity: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
 
         prevArrow: (
             <div className='ml-10 top-1/2 transform -translate-y-1/2 md:absolute md:top-1/2 md:-translate-y-1/2 left-0 md:left-10 relative'>
@@ -45,7 +47,7 @@ function SlideShow() {
       <Zoom {...zoomProp}>
         {images.map((each, i) =>(
             <div key={i} className='flex justify-center md:items-center items-start w-screen relative'>
-                <img className='object-cover w-full h-screen' src={each}/>
+                <img className='object-cover w-full h-screen cursor-pointer' src={each}/>
             </div>
         ))}
       </Zoom>

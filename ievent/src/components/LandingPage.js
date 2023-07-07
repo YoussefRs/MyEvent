@@ -3,6 +3,7 @@ import Header from "./Landing_Page_Partials/Header"
 import HeroHome from "./Landing_Page_Partials/HeroHome"
 import images from '@/utils/landing_page_utils'
 import SlideShow from "./Landing_Page_Partials/SlideShow"
+import MulSlideShow from "./Landing_Page_Partials/MulSlideShow"
 
 
 function LandingPage() {
@@ -14,7 +15,8 @@ function LandingPage() {
         <main className="grow">
             {/* <HeroHome /> */}
             <SlideShow />
-            <FeaturesZigZag images={images} />
+            <MulSlideShow />
+            {/* <FeaturesZigZag images={images} /> */}
         </main>
       </div>
     </div>
