@@ -45,7 +45,9 @@
 
 // export default Header
 
+import { useRouter } from 'next/router';
 import React from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
 import { AiOutlineLogin } from 'react-icons/si'
 
@@ -56,6 +58,7 @@ import { AiOutlineLogin } from 'react-icons/si'
 
 const Header = () => {
   const hamburger = React.useRef(null);
+  const router = useRouter();
 
   function toggleMenu() {
     hamburger.current.classList.toggle('h-0');
@@ -78,7 +81,7 @@ const Header = () => {
             onClick={toggleMenu}
             className="hamburger rounded-md cursor-pointer py-3 px-4 bg-[color:var(--darker-secondary-color)] sm:hidden text-white"
           >
-            <span /> |||
+            <span /> <AiOutlineMenu />
           </button>
         </div>
         <nav
@@ -100,7 +103,7 @@ const Header = () => {
             </a>
             <a
               className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
-              href="#"
+              href="/shop"
             >
               SHOP
             </a>

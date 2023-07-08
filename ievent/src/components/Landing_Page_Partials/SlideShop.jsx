@@ -12,13 +12,14 @@ function SlideShop() {
       "img/ShopPics/j3.jpg",
       "img/ShopPics/j4.jpg",
       "img/ShopPics/j5.png",
+      "img/ShopPics/j3.jpg",
   ];
 
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 3,
         responsive: [
             {
@@ -55,7 +56,7 @@ function SlideShop() {
             {/*Title section */}
             <div className="max-w-100 text-white md:pb-16 ">
                 <div className='flex justify-between flex-row md:flex-row'>
-                  <a className="h2 mb-4 md:mb-0" href='#'>
+                  <a className="h2 mb-4 md:mb-0" href='/shop'>
                       SHOP
                   </a>
                   <a className="flex flex-row text-lg pt-2 mb-4 md:mb-0 md:mr-12 hover:text-[color:var(--darker-secondary-color)]" href='#'>

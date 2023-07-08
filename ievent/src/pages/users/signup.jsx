@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-export default function singup({ userIdCookie }) {
+export default function Singup({ userIdCookie }) {
     const [step, setStep] = useState(1)
     const [message, setMessage] = useState({ errorMsg: "", successMsg: "" })
 

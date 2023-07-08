@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-export default function signin({ userIdCookie }) {
+export default function Signin({ userIdCookie }) {
     const router = useRouter();
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('')
