@@ -14,6 +14,12 @@ function ProductFeed() {
         {
             name : "Artist 3"
         },
+        {
+            name : "Artist 4"
+        },
+        {
+            name : "Artist 5"
+        },
     ];
     const products = [
         {
@@ -61,14 +67,14 @@ function ProductFeed() {
       };
 
   return (
-    <div className="w-full px-6 bg-transparent " id="products-feed" >
-      <div className='fixed top-20 pt-1 mt-1 z-10 bg-black h-12 w-full'>
-        <div className="flex items-center top- w-full max-w-screen-xl sm:mb-20 mb-16 gap-4  mx-auto overflow-x-auto hideScrollBar capitalize text-sm font-medium">
+    <div className="w-full " id="products-feed">
+      <div className='top-20 mt-1 fixed z-20 bg-black h-12 w-full '>
+        <div className="flex items-center px-6 w-full max-w-screen-xl sm:mb-20 mb-16 gap-4  mx-auto overflow-x-auto capitalize text-sm font-medium">
           <div>
             <HiAdjustments className="w-8 h-8 text-white" />
           </div>
           <div
-            className={` py-2 px-6 bg-white  text-center  text-black hover:bg-[color:var(--secondary-color)] rounded  transition-all cursor-pointer ease-in-out duration-200 shadow ${categoryActive === "all" ? "bg-[color:var(--secondary-color)] text-black" : ""
+            className={` py-2 px-6 bg-white text-center rounded text-black hover:bg-[color:var(--secondary-color)] transition-all cursor-pointer ease-in-out duration-200 shadow ${categoryActive === "all" ? "bg-[color:var(--secondary-color)] text-black" : ""
               }`}
             onClick={() => activeCategoryHandler("all")}
           >
@@ -77,8 +83,8 @@ function ProductFeed() {
           {categories?.map((category, i) => (
             <div
               key={`category-${i}`}
-              className={`py-2 px-2  bg-white text-center overflow-x-hidden whitespace-nowrap rounded hover:bg-[color:var(--secondary-color)] transition-all cursor-pointer ease-in-out duration-200 shadow ${categoryActive === category?.name
-                  ? "bg-[color:var(--secondary-color)] text-black"
+              className={`py-2 px-6 bg-white  text-center whitespace-nowrap rounded text-black hover:bg-[color:var(--secondary-color)] transition-all cursor-pointer ease-in-out duration-200 shadow ${categoryActive === category?.name
+                  ? "bg-[color:var(--secondary-color)] "
                   : ""
                 }`}
               onClick={() => activeCategoryHandler(category?.name)}
@@ -88,22 +94,22 @@ function ProductFeed() {
           ))}
         </div>
       </div>
-      <div className="grid grid-flow-row-dense mt-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mx-auto max-w-screen-xl gap-x-6 gap-y-8 ">
-        {(categoryActive === "all" ? products : filteredProducts)?.map(
-          ({ _id, title, price, description, category, image }) => (
-            <Product
-              key={`product-${_id}`}
-              _id={_id}
-              title={title}
-              price={price}
-              description={description}
-              category={category}
-              image={image}
-            />
-          )
-        )}
-      </div>
+    <div className="grid mt-20 px-6 grid-flow-row-dense sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mx-auto max-w-screen-xl gap-x-6 gap-y-8">
+      {(categoryActive === "all" ? products : filteredProducts)?.map(
+        ({ _id, title, price, description, category, image }) => (
+          <Product
+            key={`product-${_id}`}
+            _id={_id}
+            title={title}
+            price={price}
+            description={description}
+            category={category}
+            image={image}
+          />
+        )
+      )}
     </div>
+  </div>
   )
 }
 

@@ -40,6 +40,10 @@
   background: var(--light-gray);
 } */
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   font-family: "DM Sans", sans-serif;
   box-sizing: border-box;

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserNavBar from '@/components/UserNavBar'
 import Dashboard_Filter from '@/components/Dashboard_Filter';
 import Popup_Filter from "@/components/Popup_Filter";
@@ -34,51 +34,51 @@ export default function UserDashboard() {
       }
   };
 
-  // useEffect(() => {
-  //     fetchAllEvents();
-  // }, []);
+  useEffect(() => {
+      fetchAllEvents();
+  }, []);
 
   // dont move this state becoz it needs allevents
   const [filteredEvents, setFilteredEvents] = useState(allEvents);
 
   // Update filteredEvents state whenever allEvents or filterOptions change
-  // useEffect(() => {
-  //     const newFilteredEvents = allEvents.filter((event) => {
-  //         // Check if keyword filter matches
-  //         if (
-  //             filterOptions.keyword.toLowerCase() &&
-  //             !event.name
-  //                 .toLowerCase()
-  //                 .includes(filterOptions.keyword.toLowerCase())
-  //         ) {
-  //             return false;
-  //         }
+  useEffect(() => {
+      const newFilteredEvents = allEvents.filter((event) => {
+          // Check if keyword filter matches
+          if (
+              filterOptions.keyword.toLowerCase() &&
+              !event.name
+                  .toLowerCase()
+                  .includes(filterOptions.keyword.toLowerCase())
+          ) {
+              return false;
+          }
 
-  //         // Check if date range filter matches
-  //         if (filterOptions.dateRange) {
-  //             const date = filterOptions.dateRange;
-  //             // Split the date string into an array of substrings
-  //             const dateParts = event.date.split("/");
-  //             // Rearrange the array elements to get yyyy-mm-dd format
-  //             const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
-  //             if (formattedDate < date) {
-  //                 return false;
-  //             }
-  //         }
+          // Check if date range filter matches
+          if (filterOptions.dateRange) {
+              const date = filterOptions.dateRange;
+              // Split the date string into an array of substrings
+              const dateParts = event.date.split("/");
+              // Rearrange the array elements to get yyyy-mm-dd format
+              const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+              if (formattedDate < date) {
+                  return false;
+              }
+          }
 
-  //         // Check if price filter matches
-  //         if (
-  //             event.price < filterOptions.price[0] ||
-  //             event.price > filterOptions.price[1]
-  //         ) {
-  //             return false;
-  //         }
+          // Check if price filter matches
+          if (
+              event.price < filterOptions.price[0] ||
+              event.price > filterOptions.price[1]
+          ) {
+              return false;
+          }
 
-  //         return true;
-  //     });
+          return true;
+      });
 
-  //     setFilteredEvents(newFilteredEvents);
-  // }, [allEvents, filterOptions]);
+      setFilteredEvents(newFilteredEvents);
+  }, [allEvents, filterOptions]);
 
   const handleFilterClear = () => {
       setFilterOptions({
