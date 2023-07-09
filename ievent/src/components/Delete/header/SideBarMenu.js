@@ -13,9 +13,14 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import onClickOutside from "react-onclickoutside";
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+import { getUserToken } from "@/utils/getUserToken";
+import { useEffect, useState } from "react";
+
 
 function SideBarMenu({ closeSideBar }) {
   const router = useRouter();
+  const userIdCookie = getUserToken();
+  const [userData, setUserData] = useState({});
 
   SideBarMenu.handleClickOutside = closeSideBar;
 
@@ -23,6 +28,42 @@ function SideBarMenu({ closeSideBar }) {
     closeSideBar();
     router.push(href);
   };
+
+  const fetchUserData = async () => {
+    // If cookie was manually removed from browser
+    // if (!userIdCookie) {
+    //     console.error("No cookie found! Please signin");
+    //     // redirect to signin
+    //     router.push("/users/signin");
+    // }
+    const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/details`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_token: userIdCookie,
+            }),
+        }
+    );
+    if (!response.ok)
+        throw new Error(`${response.status} ${response.statusText}`);
+  
+    // User Details fetched from API `/user/details`
+    try {
+        const data = await response.json();
+        setUserData(data);
+    } catch (error) {
+        console.error("Invalid JSON string:", error.message);
+    }
+  };
+  
+    useEffect(() => {
+      fetchUserData();
+    }, []);
+
 
   return (
     <div className="relative h-full w-full px-8 py-6  font-medium md:hidden backdrop-blur-md">
@@ -38,30 +79,25 @@ function SideBarMenu({ closeSideBar }) {
       </div>
       <div className=" h-0.5 my-4 w-full bg-[color:var(--darker-secondary-color)]"></div>
       <div className="my-8">
-            <span className="link text-white text-lg" onClick={() => router.push('/users/signin')}>
-              Login/Signup
-            </span>
-        {/* {!loading ? (
-          session ? (
-            <img
-              src={session?.user?.image || "/img/profile_pic.svg"}
-              loading="lazy"
-              alt=""
-              width="24"
-              height="24"
-              className="object-contain w-10 h-10 rounded-full mr-1 hover:shadow-md"
-              onClick={() => sideBarClickHandler("/profile")}
-            />
-          ) : (
-            <span className="link text-blue-light text-lg" onClick={signIn}>
-              Login/Signup
-            </span>
-          )
-        ) : (
-          <Skeleton circle={true} width={50} height={50} />
-        )} */}
+            {!userIdCookie ? (
+                  <span className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)] cursor-pointer" onClick={() => router.push('/users/signin')}>
+                    Login
+                  </span>
+                ) : (
+                  <>
+                    <span className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)] cursor-pointer" 
+                      >
+                        {userData.username}
+                    </span>
+                    <span className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)] cursor-pointer" 
+                      onClick={() => router.push("/users/dashboard")}>
+                        Dashboard
+                    </span>
+                    {/* <UserDropDown userData={userData} /> */}
+                  </>
+                   )} 
       </div>
-      <div className="gap-4 flex flex-col text-white">
+      {/* <div className="gap-4 flex flex-col text-white"> */}
         {/* <div>
           <span
             onClick={() => sideBarClickHandler("/")}
@@ -90,42 +126,42 @@ function SideBarMenu({ closeSideBar }) {
             </span>
           </div>
         )} */}
-        <div>
+        {/* <div>
           <span
             onClick={() => sideBarClickHandler("/cart")}
             className="link inline-flex"
-          >
+          > */}
             {/* <ShoppingCartIcon className="w-5 mr-6" />  */}
-            Cart
+            {/* Cart
           </span>
         </div>
         <div>
           <span
             onClick={() => sideBarClickHandler("/orders")}
             className="link inline-flex"
-          >
+          > */}
             {/* <ShoppingBagIcon className="w-5 mr-6" /> */}
-             Orders
+             {/* Orders
           </span>
         </div>
         <div>
           <span
             onClick={() => sideBarClickHandler("/about")}
             className="link inline-flex"
-          >
+          > */}
             {/* <MailIcon className="w-5 mr-6" />  */}
-            Contact
+            {/* Contact
           </span>
         </div>
         <div>
           <span
             onClick={() => sideBarClickHandler("/about")}
             className="link inline-flex"
-          >
+          > */}
             {/* <InformationCircleIcon className="w-5 mr-6" /> */}
-             About
+             {/* About
           </span>
-        </div>
+        </div> */}
         {/* {session && (
           <div>
             <span
@@ -138,7 +174,7 @@ function SideBarMenu({ closeSideBar }) {
             </span>
           </div>
         )} */}
-      </div>
+      {/* </div> */}
     </div>
   );
 }

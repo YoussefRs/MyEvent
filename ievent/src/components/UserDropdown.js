@@ -36,10 +36,10 @@ export default function Dropdown({ userData }) {
     }, [dropdownRef]);
 
     return (
-        <li className="mr-4 cursor-pointer relative" ref={dropdownRef}>
+        <li className="mr-4 cursor-pointer z-100 relative" ref={dropdownRef}>
             <button
                 onClick={toggleDropdown}
-                className="flex items-center justify-center bg-[color:var(--darker-secondary-color)] text-white text-sm font-medium rounded-md w-28 h-10 focus:outline-none"
+                className="flex items-center justify-center  text-white text-sm font-medium rounded-md w-28 h-10 focus:outline-none"
             >
                 <span className="mr-2">Profile</span>
                 <FaAngleDown

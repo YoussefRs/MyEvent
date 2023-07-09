@@ -4,7 +4,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { useRouter } from "next/router";
 import Search from "@/components/shop_partials/search/Search";
-import SideBarMenu from "./SideBarMenu";
+import SideBarMenu from "./header/SideBarMenu";
 
 function ShopHeaderMobile() {
   const router = useRouter();

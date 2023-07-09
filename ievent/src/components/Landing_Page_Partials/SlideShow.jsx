@@ -43,7 +43,7 @@ function SlideShow() {
         )
     }
   return (
-    <div className='w-screen'>
+    <div className='w-screen z-0'>
       <Zoom {...zoomProp}>
         {images.map((each, i) =>(
             <div key={i} className='flex justify-center md:items-center items-start w-screen relative'>

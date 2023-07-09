@@ -46,11 +46,12 @@
 // export default Header
 
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FiLogIn } from 'react-icons/fi';
-import { AiOutlineLogin } from 'react-icons/si'
-
+import Image from 'next/image';
+import { getUserToken } from '@/utils/getUserToken';
+import dynamic from "next/dynamic";
+import { removeUserToken } from '@/utils/removeUserToken';
 /**
  * Modify design on stackblitz
  * - https://play.tailwindcss.com/lHGLvzlyes
@@ -65,16 +66,57 @@ const Header = () => {
     hamburger.current.classList.toggle('h-56');
   }
 
+  const userIdCookie = getUserToken();
+  const [userData, setUserData] = useState({})
+
+  const fetchUserData = async () => {
+
+    const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/details`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_token: userIdCookie,
+            }),
+        }
+    );
+    if (!response.ok)
+        throw new Error(`${response.status} ${response.statusText}`);
+  
+    // User Details fetched from API `/user/details`
+    try {
+        const data = await response.json();
+        setUserData(data);
+    } catch (error) {
+        console.error("Invalid JSON string:", error.message);
+    }
+  };
+  
+    useEffect(() => {
+      fetchUserData();
+    }, []);
+
+     // function to handle logout button click
+     const handleLogout = () => {
+      removeUserToken();
+      router.push("/");
+  };
+
   return (
-    <header className="py-3 backdrop-blur-md ">
+    <header className="py-3 bg-black sticky top-0 ">
       <section className="max-w-5xl mx-auto w-11/12 sm:flex sm:justify-between sm:items-center ">
         <div className="flex items-center justify-between sm:block">
           <section className="w-16 rounded-full border-4 border-black overflow-hidden flex items-center">
-            <img
+            <Image
               src="https://e7.pngegg.com/pngimages/779/61/png-clipart-logo-idea-cute-eagle-leaf-logo.png"
               alt=""
-              className="w-auto"
-              style={{ height: '90%' }}
+              className="cursor-pointer"
+              width={100}
+              height={50}
+              onClick={() => router.push("/")}
             />
           </section>
           <button
@@ -93,13 +135,13 @@ const Header = () => {
               className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
               href="#"
             >
-              HOME
+              EVENTS
             </a>
             <a
               className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
               href="#"
             >
-              ABOUT
+              POSTS
             </a>
             <a
               className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
@@ -107,18 +149,24 @@ const Header = () => {
             >
               SHOP
             </a>
-            <a
-              className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
-              href="#"
-            >
-              CONTACT
-            </a>
-            <a
-              className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
+            {!userIdCookie ? (
+              <a
+              className="block p-2 ml-6 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
               href="/users/signin"
             >
-              ACCOUNT
+              {typeof window !== "undefined" ? "ACCOUNT" : ""}
             </a>
+            ) : (
+              <>
+                <a
+                className="block p-2 ml-6 font-semibold  text-sm sm:text-base text-[color:var(--darker-secondary-color)]"
+                >
+                  {userData.username}
+                </a>
+                <a className='block p-2 ml-6 cursor-pointer font-semibold hover:text-[color:var(--darker-secondary-color)]  text-sm sm:text-base text-white' onClick={handleLogout}>LOGOUT</a>
+              </>
+              
+            )}
           </div>
           
         </nav>
@@ -127,4 +175,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default dynamic (() => Promise.resolve(Header), {ssr: false})

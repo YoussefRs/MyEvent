@@ -17,7 +17,7 @@ export default function NavBar() {
         if (!userIdCookie) {
             console.error("No cookie found! Please signin");
             // redirect to signin
-            router.push("/users/signin");
+            // router.push("/users/signin");
         }
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/user/details`,
@@ -47,6 +47,22 @@ export default function NavBar() {
         fetchUserData();
     }, []);
 
+    const handleDashboardClick = () => {
+        router.push('/users/dashboard');
+      };
+    
+      const handlePastEventsClick = () => {
+        router.push('/users/past_events');
+      };
+    
+      const handleShopClick = () => {
+        router.push('/shop');
+      };
+    
+      const handleAboutUsClick = () => {
+        router.push('/');
+      };
+
 
   return (
     <div className='mb-[8vh]'>
@@ -57,11 +73,11 @@ export default function NavBar() {
                     className='flex items-center gap-x-3 cursor-pointer'
                 >
                     <Image
-                        src="/favicon_io/android-chrome-192x192.png"
+                        src="https://e7.pngegg.com/pngimages/779/61/png-clipart-logo-idea-cute-eagle-leaf-logo.png"
                         width={500}
                         height={500}
-                        alt='Logo'
-                        className='h-8 w-8'
+                        alt="THRUST"
+                        className='h-8 w-8 rounded'
                     />
                     <h1 className='m-2 text-[color:var(--darker-secondary-color)]font-bold text-4xl'>
                         THRUST
@@ -70,22 +86,22 @@ export default function NavBar() {
                 <nav className='text-sm'>
                     <ul className='flex items-center'>
                         <li
-                            onClick={() => router.push("/users/dashboard")}
+                            onClick={handleDashboardClick}
                             className='mr-4 cursor-pointer'
                         >
                             <a>Dashboard</a>    
                         </li>
                         <li
-                            onClick={() => router.push("/users/past_events")}
+                            onClick={handlePastEventsClick}
                             className='mr-4 cursor-pointer'
                         >
                             <a>Past Events</a>
                         </li>
                         <li
-                            onClick={() => router.push("/")}
+                            onClick={handleShopClick}
                             className='mr-4 cursor-pointer'
                         >
-                            <a>About us</a>
+                            <a>Shop</a>
                         </li>
                         <UserDropDown userData={userData} />
                     </ul>
