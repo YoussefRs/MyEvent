@@ -135,7 +135,7 @@ export default function UserDashboard() {
                               filteredEvents.map((event, i) => (
                                 <div
                                   key={event._id}
-                                  onClick={() => {router.push(`/event/${event.event_id}`)}}
+                                  onClick={() => {router.push(`/events/${event.event_id}`)}}
                                   className='hover:scale-105 cursor-pointer transition-all mt-5 bg-[color:var(--white-color)] rounded-lg shadow-md px-3 py-3'
                                 >
                                   <div className='relative h-[25rem]'>
@@ -162,7 +162,7 @@ export default function UserDashboard() {
                                       <div className='flex flex-col justify-end items-center'>
                                         <span className='w-full flex flex-row items-center'>
                                           <FaUser />
-                                          <span className="ml-2 text-sm text-white"> 4.92</span>
+                                          <span className="ml-2 text-sm text-black"> 4.92</span>
                                         </span>
                                         <p className="text-sm text-gray-800 mt-2">
                                           <strong className='text-sm text-gray-800 mt-2'>

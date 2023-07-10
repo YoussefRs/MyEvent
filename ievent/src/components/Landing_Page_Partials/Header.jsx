@@ -133,7 +133,7 @@ const Header = () => {
         <div className="rounded-md p-2 border-8 mt-3 text-center sm:bg-transparent sm:p-0 sm:border-none sm:flex sm:m-0 sm:text-left">
           <a
             className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
-            href="#"
+            href="/events"
           >
             EVENTS
           </a>

@@ -68,8 +68,8 @@ function ProductFeed() {
 
   return (
     <div className="w-full " id="products-feed">
-      <div className='top-20 mt-1 fixed z-20 bg-black h-12 w-full '>
-        <div className="flex items-center px-6 w-full max-w-screen-xl sm:mb-20 mb-16 gap-4  mx-auto overflow-x-auto capitalize text-sm font-medium">
+      <div className='top-20 mt-0 pt-2 fixed z-20 bg-black h-12 w-full '>
+        <div className="flex items-center px-6 w-full max-w-screen-l sm:mb-20 mb-16 gap-4  mx-auto overflow-x-auto capitalize text-sm font-medium">
           <div>
             <HiAdjustments className="w-8 h-8 text-white" />
           </div>
@@ -94,7 +94,7 @@ function ProductFeed() {
           ))}
         </div>
       </div>
-    <div className="grid mt-20 px-6 grid-flow-row-dense sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mx-auto max-w-screen-xl gap-x-6 gap-y-8">
+    <div className="grid mt-20 px-6 grid-flow-row-dense sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mx-auto max-w-screen-l gap-x-6 gap-y-8">
       {(categoryActive === "all" ? products : filteredProducts)?.map(
         ({ _id, title, price, description, category, image }) => (
           <Product
