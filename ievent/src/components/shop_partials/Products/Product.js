@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import Currency from "react-currency-formatter";
+// import Currency from "react-currency-formatter";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useRouter } from "next/router";
@@ -34,7 +34,8 @@ function Product({ _id, title, price, description, category, image }) {
             </Link>
         </p>
         <div className="mb-5 mt-2 font-bold text-gray-700">
-          <Currency quantity={price || "10"} currency="TND" />
+          {/* <Currency quantity={price || "10"} currency="TND" /> */}
+          <p>PRICE </p>
         </div>
         <button
           className="mt-auto button border-2 hover:text-[color:var(--darker-secondary-color)] border-black rounded-md flex items-center justify-center"
