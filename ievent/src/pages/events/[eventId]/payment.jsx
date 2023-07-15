@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 // import StripeCheckout from "react-stripe-checkout";
 
-export default function payment() {
+export default function Payment() {
     
     const router = useRouter();
 

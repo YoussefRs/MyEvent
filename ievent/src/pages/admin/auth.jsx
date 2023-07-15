@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import Cookies from "universal-cookie";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
     const cookies = new Cookies(context.req.headers.cookie);
@@ -17,7 +18,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-export default function signin({ adminIdCookie }) {
+export default function Signin({ adminIdCookie }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [step, setStep] = useState(1);
@@ -209,20 +210,19 @@ export default function signin({ adminIdCookie }) {
                                                 <span className="font-bold">
                                                     Hey there!{" "}
                                                 </span>
-                                                Welcome back, you're
+                                                Welcome back, you&apos;re
                                                 successfully signed in!
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <button
-                                    onClick={() =>
-                                        router.push("/admin/dashboard")
-                                    }
-                                    className="mt-4 bg-[color:var(--darker-secondary-color)] text-white py-2 px-4 rounded hover:bg-[color:var(--secondary-color)] transition ease-in-out"
-                                >
-                                    Go to your dashboard
-                                </button>
+                                <Link href="/admin/dashboard">
+                                    <button
+                                        className="mt-4 bg-[color:var(--darker-secondary-color)] text-white py-2 px-4 rounded hover:bg-[color:var(--secondary-color)] transition ease-in-out"
+                                    >
+                                        Go to your dashboard
+                                    </button>
+                                </Link>
                             </div>
                         )
                     }

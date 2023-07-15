@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import Cookies from "universal-cookie";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
     const cookies = new Cookies(context.req.headers.cookie);
@@ -260,16 +261,17 @@ export default function Signin({ userIdCookie }) {
                                     <span className="font-bold">
                                         Hey there!{" "}
                                     </span>
-                                    Welcome back, you're successfully signed in!!
+                                    Welcome back, you&apos;re successfully signed in!!
                                 </p>
                             </div>
                         </div>
-                        <button
-                            onClick={() => router.push('/users/dashboard')}
-                            className="mt-4 bg-[color:var(--darker-secondary-color)] text-white py-2 px-4 rounded hover:bg-[color:var(--secondary-color)] transition ease-in-out"
-                        >
-                            Go to your dashboard
-                        </button>
+                        <Link href="/users/dashboard">
+                            <button
+                                className="mt-4 bg-[color:var(--darker-secondary-color)] text-white py-2 px-4 rounded hover:bg-[color:var(--secondary-color)] transition ease-in-out"
+                            >
+                                Go to your dashboard
+                            </button>
+                        </Link>
                     </div>
                 )
             }

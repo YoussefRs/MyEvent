@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaArrowRight } from 'react-icons/fa';
 import { FiArrowRight } from 'react-icons/fi';
+import Link from 'next/link';
 
 function SlideShop() {
     const images = [
@@ -56,13 +57,13 @@ function SlideShop() {
             {/*Title section */}
             <div className="max-w-100 text-white md:pb-16 ">
                 <div className='flex justify-between flex-row md:flex-row'>
-                  <a className="h2 mb-4 md:mb-0" href='/shop'>
+                  <Link className="h2 mb-4 md:mb-0" href='/shop'>
                       SHOP
-                  </a>
-                  <a className="flex flex-row text-lg pt-2 mb-4 md:mb-0 md:mr-12 hover:text-[color:var(--darker-secondary-color)]" href='#'>
+                  </Link>
+                  <Link className="flex flex-row text-lg pt-2 mb-4 md:mb-0 md:mr-12 hover:text-[color:var(--darker-secondary-color)]" href='#'>
                        VIEW ALL
                       <FiArrowRight className='pt-2'/> 
-                  </a>
+                  </Link>
                 </div>
                 <Fragment>
                     <Slider {...settings} >

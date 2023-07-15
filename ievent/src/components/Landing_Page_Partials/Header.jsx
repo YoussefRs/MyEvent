@@ -52,6 +52,7 @@ import Image from 'next/image';
 import { getUserToken } from '@/utils/getUserToken';
 import dynamic from "next/dynamic";
 import { removeUserToken } from '@/utils/removeUserToken';
+import Link from 'next/link';
 /**
  * Modify design on stackblitz
  * - https://play.tailwindcss.com/lHGLvzlyes
@@ -130,40 +131,31 @@ const Header = () => {
         ref={hamburger}
         className="overflow-hidden h-0 transition-all duration-300 sm:h-auto text-white flex-grow"
       >
-        <div className="rounded-md p-2 border-8 mt-3 text-center sm:bg-transparent sm:p-0 sm:border-none sm:flex sm:m-0 sm:text-left">
-          <a
-            className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
-            href="/events"
-          >
-            EVENTS
-          </a>
-          <a
-            className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
-            href="#"
-          >
+        <div className="rounded-md p-2 mt-3 text-center sm:bg-transparent sm:p-0 sm:border-none sm:flex sm:m-0 sm:text-left">
+          <Link href="/events" className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]">
+            EVENT
+          </Link>
+          <Link href="#" className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]">
             POSTS
-          </a>
-          <a
-            className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
-            href="/shop"
-          >
+          </Link>
+          <Link href="/shop" className="block p-2 font-semibold text-white text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]">
             SHOP
-          </a>
+          </Link>
           {!userIdCookie ? (
-            <a
+            <Link
             className="block p-2 sm:ml-6 font-semibold text-white  text-sm sm:text-base hover:text-[color:var(--darker-secondary-color)]"
             href="/users/signin"
           >
             ACCOUNT
-          </a>
+          </Link>
           ) : (
             <>
-              <a
+              <Link
               className="block p-2 sm:ml-6 font-semibold sm:ml-0 text-sm sm:text-base text-[color:var(--darker-secondary-color)]"
               >
                 {userData.username}
-              </a>
-              <a className='block p-2 sm:ml-6 cursor-pointer font-semibold hover:text-[color:var(--darker-secondary-color)]  text-sm sm:text-base text-white' onClick={handleLogout}>LOGOUT</a>
+              </Link>
+              <Link className='block p-2 sm:ml-6 cursor-pointer font-semibold hover:text-[color:var(--darker-secondary-color)]  text-sm sm:text-base text-white' onClick={handleLogout}>LOGOUT</Link>
             </>
             
           )}

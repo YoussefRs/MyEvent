@@ -3,7 +3,7 @@ import CreateEventForm from "@/components/CreateEventForm";
 import Image from "next/image";
 import React from "react";
 
-function eventform() {
+function Eventform() {
     return (
         <div className="pt-20 lg:pt-8">
             <AdminNavBar />
@@ -27,4 +27,4 @@ function eventform() {
     );
 }
 
-export default eventform;
+export default Eventform;

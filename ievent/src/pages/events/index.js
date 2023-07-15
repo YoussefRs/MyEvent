@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FaUser } from 'react-icons/fa';
 import { RxHamburgerMenu } from "react-icons/rx";
 
-export default function index() {
+export default function Index() {
     const router = useRouter();
 
     const [allEvents, setAllEvents] = useState([]);
